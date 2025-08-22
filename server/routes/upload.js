@@ -7,7 +7,7 @@ const router = express.Router();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-
+const BASE_URL='https://securedrop-ne4k.onrender.com'
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
@@ -54,7 +54,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
     res.json({
       message: 'File uploaded successfully',
-      downloadLink: `${process.env.BASE_URL}/api/file/${fileDoc._id}`,  // fixed here
+      downloadLink: `${BASE_URL}/api/file/${fileDoc._id}`,  // fixed here
     });
   } catch (err) {
     console.error(err);
